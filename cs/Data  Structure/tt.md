@@ -4,6 +4,7 @@
 
 ![image](https://user-images.githubusercontent.com/103404604/187030184-10cc3141-744a-4770-b493-7eb83b1e2d46.png)
 (예시: 해시테이블 자료구조)
+
 ![image](https://user-images.githubusercontent.com/103404604/187030207-9c60b427-b080-4281-98ae-495d7bd447db.png)
 (예시: 이진트리)
 
