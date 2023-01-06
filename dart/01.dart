@@ -21,8 +21,12 @@ main(){
   isEmpty(null);
 }
 
-// nico가 String일 수도, null일 수도 있다는걸 dart가 인지
+// ?를 넣어주면 nico가 String일 수도, null일 수도 있다는걸 dart가 인지
 void main(){
   String? nico = 'nico';
   nico = null;
+  if(nico != null){
+    nico.isNotEmpty;
+  }
+  nico?.isNotEmpty; // nico가 null이 아니라면 isNotEmpty속성을 달라
 }
