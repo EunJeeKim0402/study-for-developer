@@ -52,3 +52,19 @@ void main(){
 }
 
 
+// 'const' compile-time constant
+// const는 compile-time에 알고 있는 값이어야 함
+// const는 컴파일 할 때 알고 있는 값에 사용하는 것임
+// 즉, 값을 API나 사용자에게서 받아와야 한다면 var이나 final을 써야됨
+void main(){
+  //const name = 'nico';
+  //name = '12'; 자바의 const처럼 수정안되는건 같음
+  //final API = fetchApi();
+  const max_allowed_price = 120;
+}
+
+
+
+
+
+
