@@ -11,6 +11,7 @@ void main() {
   }
 }
 
+
 // null safety란 개발자가 null값을 참조할 수 없도록 하는 것
 // dart에서는 어떤 변수가 null이 될 수 있음을 정확히 표시해야 함
 
@@ -20,7 +21,6 @@ bool isEmpty(String string) => string.length == 0;
 main(){
   isEmpty(null);
 }
-
 // ?를 넣어주면 nico가 String일 수도, null일 수도 있다는걸 dart가 인지
 void main(){
   String? nico = 'nico';
@@ -30,3 +30,13 @@ void main(){
   }
   nico?.isNotEmpty; // nico가 null이 아니라면 isNotEmpty속성을 달라
 }
+
+
+// 한번 정의된 변수를 수정하지 못하게 하려면 final
+void main(){
+  final /*String*/ name = 'nico';
+  //name 'nico';
+}
+
+
+
