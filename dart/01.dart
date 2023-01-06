@@ -64,7 +64,20 @@ void main(){
 }
 
 
-
+// dart의 자료형
+void main(){
+  String name = 'nico'; // 작은따옴표
+  String name = "nico"; // 큰따옴표
+  bool alive = true; // 불린
+  int age = 12;
+  double money = 69.99;
+  // 이런 모든 dart의 자료형이 거의 object형임
+  // dart는 객체지향언어
+  
+  // num은 int와 double의 부모클래스.
+  num x = 12;
+  x = 1.1;
+}
 
 
 
