@@ -20,3 +20,9 @@ bool isEmpty(String string) => string.length == 0;
 main(){
   isEmpty(null);
 }
+
+// nico가 String일 수도, null일 수도 있다는걸 dart가 인지
+void main(){
+  String? nico = 'nico';
+  nico = null;
+}
