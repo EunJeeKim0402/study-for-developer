@@ -39,4 +39,16 @@ void main(){
 }
 
 
+//late는 초기 데이터 없이 변수를 선언할 수 있게 해줌
+//final이나 var 앞에 붙여줄 수 있는 수식어
+void main(){
+  late final String name;
+  // 이제 여기다 무언가를 하면 됨
+  // ex.API에서 데이터를 받아서 다시 작업
+  name = '';
+  //name = '12'; 파이널이기 때문에 한번만 선언 가능
+  print(name);
+  // name이 먼저 들어가야 print가 가능
+}
+
 
