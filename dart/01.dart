@@ -148,6 +148,21 @@ void main(){
 }
 
 
+// Set (튜플같은 개념)
+// Set은 유니크설정이 있기 때문에 중복이 안됨
+void main(){
+  //var numbers = {1,2,3,4};
+  Set<int> numbers = {1,2,3,4};
+  numbers.add(1);
+  numbers.add(1);
+  numbers.add(1);
+  numbers.add(1);
+  print(numbers);
+}
+
+
+
+
 
 
 
