@@ -110,3 +110,22 @@ void main(){
   print(greeting);
 }
 
+
+// collection for
+void main(){
+  var oldFriends = ['nico', 'lynn'];
+  var newFriends = [
+    'lewis',
+    'ralph',
+    'darren',
+    for(var friend in oldFriends) "love $friend",
+  ];
+  print(newFriends);
+}
+
+
+
+
+
+
+
