@@ -163,14 +163,16 @@ void main(){
 
 // Function 정의
 // void는 아무것도 return하지 않는다는 뜻
-String sayHello(String potato){
-  return ("hello $potato nice to meet you");
-}
+//String sayHello(String potato){
+//  return ("hello $potato nice to meet you");
+//}
+String sayHello(String potato) =>
+   ("hello $potato nice to meet you");
+
 void main(){
   print(sayHello('nico'));
 }
-
-
+num plus(num a, num b) => a + b;
 
 
 
