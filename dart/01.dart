@@ -124,6 +124,28 @@ void main(){
 }
 
 
+// Map
+void main(){
+  var player = {
+    'name' : 'nico',
+    'wp' : 19.19,
+    'superpower' : false,
+  };
+  // object의 타입은 anything이라고 보면 됨
+  
+  Map<int, bool> player = {
+    1 : true,
+    2 : false,
+    3 : true,
+  };
+  Map<List<int>, bool> player = {
+    [1,2,3,4] : true,
+  };
+  List<Map<String, Object>> players = [
+    {'name': 'nico', 'xp': 199993.999},
+    {'name': 'nico', 'xp': 199993.999}
+  ];
+}
 
 
 
