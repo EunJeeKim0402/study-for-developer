@@ -80,4 +80,23 @@ void main(){
 }
 
 
+void main(){
+  var numbers = [1,2,3,4,5];
+  List<int> numbers = [1,2,3,4,5,];
+  //numbers.add('lalala');
+  numbers.add(111);
+  numbers.last; // 마지막 요소를 가져와야하는데 몇개나 있는지 모를 때
+  // 등등 많은 메소드들이 있음.
+  
+  // List에서는 collection if와 collection for을 지원함
+  var giveMeFive = true;
+  var number = [
+    1, 
+    2, 
+    3, 
+    4,
+    if(giveMeFive) 5, // 만약 giveMeFive의 값이 true일 경우
+  ];
+}
+
 
