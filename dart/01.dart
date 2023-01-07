@@ -175,6 +175,29 @@ void main(){
 num plus(num a, num b) => a + b;
 
 
+// Parameters 정의
+// 만약 sayHello값이 null이어도 기본값이 들어감
+String sayHello({
+  //String name = 'anon', int age = 90, String country = 'wakanda'
+  required String name,
+  required int age,
+  required String country,
+  }){
+  return "hello $name, $age, $country";
+}
+void main(){
+  print(
+    sayHello(
+    //'nico', 19 , 'cuba'
+    age : 12,
+    country : 'caba',
+    name : 'nico',
+  )
+  );
+}
+
+
+
 
 
 
