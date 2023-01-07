@@ -100,3 +100,13 @@ void main(){
 }
 
 
+// String interpolation : text에 변수를 추가하는 방법
+// $변수명. 이미 변수가 존재할 때 쓰는 방법.
+// 계산할때는 ${변수명 + 2}과 같이할것
+void main(){
+  var name = 'nico';
+  var age = 10;
+  var greeting = "Hello, my name is $name and I'm ${age + 2}";
+  print(greeting);
+}
+
