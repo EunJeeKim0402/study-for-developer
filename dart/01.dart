@@ -197,6 +197,21 @@ void main(){
 }
 
 
+// Optional Positional Parameters
+// 순서에 맞춰서 입력해야 함
+String sayHello(String name, 
+                int age,
+                [String? country = 'korea'])
+                => 'Hello $name, you are $age from $country';
+void main(){
+  var results = sayHello('nico', 12);
+  print(results);
+  // country를 적지 않았는데도 문제가 없음
+}
+
+
+
+
 
 
 
