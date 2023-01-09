@@ -210,6 +210,39 @@ void main(){
 }
 
 
+// QQ Operator
+// ??
+//String capitalizeName(String? name) => name.toUpperCase();
+// ?를 붙임으로써 name은 null일 수도 있고 아닐 수도 있다. 그러나 toUpper가 적용안됨
+/*
+String capitalizeName(String? name){
+  if(name != null){
+    return name.toUpperCase();
+  }
+  return 'ANON';
+}
+*/
+// 위 코드를 더 짧게
+// 좌측 ?? 우측 : 좌향이 null이면 우향을 return 
+String capitalizeName(String? name) => 
+    //name != null ? name.toUpperCase() : 'ANON';
+    name?.toUpperCase() ?? 'ANON';
+void main(){
+  capitalizeName('nico');
+  capitalizeName(null);
+}
+// ??=
+void main(){
+  String? name;
+  name ??= 'nico';
+  name = null;
+  name ??= 'another';
+  print(name);
+}
+
+
+
+
 
 
 
