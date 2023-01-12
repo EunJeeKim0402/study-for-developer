@@ -260,7 +260,16 @@ void main(){
 }
 
 
-
+// dart와 flutter는 모두 클래스로 이루어져 있음
+// Class에서 property를 선언할 때는 타입을 사용해서 정의함
+// 즉, 타입이 필수라는 이야기
+class Player{
+  String name = 'nico';
+  int xp = 1500;
+}
+void main(){
+  var player = 
+}
 
 
 
