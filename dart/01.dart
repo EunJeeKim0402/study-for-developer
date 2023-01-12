@@ -264,12 +264,132 @@ void main(){
 // Class에서 property를 선언할 때는 타입을 사용해서 정의함
 // 즉, 타입이 필수라는 이야기
 class Player{
-  String name = 'nico';
+  //String name = 'nico';
+  //만약 Player의 이름을 못바꾸게 하고 싶다면?
+  final String name = 'nico';
   int xp = 1500;
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
 }
 void main(){
-  var player = 
+  var player = Player();
+  print(player.name);
+  player.sayHello();
+  //player.name = 'lalala'; // final을 선언하는순간 에러남
+  //print(player.name);
 }
+
+
+// Constructors메소드의 이름은 class와 같아야됨
+class Player{
+  // late는 변수들의 값을 나중에 받아올것이라는 의미
+  final String name;
+  int xp;
+  
+  Player(this.name, this.xp);
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+void main(){
+  var player = Player('nico', 1500);
+  player.sayHello();
+  var player2 = Player('lynn', 2500);
+  player2.sayHello();
+}
+
+
+// Named(명명된) Constructor Parameters
+// 아까 방식을 사용하면 항목이 너무 많아질 때 가독성이 안좋음
+class Player{
+  final String name;
+  int xp;
+  String team;
+  int age;
+  
+  // name, xp... 등이 null일 수도 있으니 에러.
+  //Player({this.name, this.xp, this.team, this.age});
+  Player({
+    required this.name, 
+    required this.xp, 
+    required this.team, 
+    required this.age
+    });
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+void main(){
+  // flutter에는 아래 방식이 더 많음
+  var player = Player(
+    name : 'nico',
+    xp : 1200,
+    team : 'blue',
+    age : 21,
+  );
+  var player2 = Player(
+    name : 'lynn', 
+    xp : 2500, 
+    team : 'blue', 
+    age : 13,
+  );
+}
+
+
+// Named(명명된) Constructor
+class Player{
+  final String name, team;
+  int xp, age;
+    
+  Player({
+    required this.name, 
+    required this.xp, 
+    required this.team, 
+    required this.age
+    });
+  
+  // : 을 사용함으로써 property들을 초기화할 수 있음
+  // named parameter형식. 기본적으로 required속성이 없음.
+  Player.createBluePlayer({
+    required String name, 
+    required int age
+    }) : this.age = age,
+         this.name = name,
+         this.team = 'blue',
+         this.xp = 0;
+  // positional parameter. 기본적으로 required임
+  Player.createRedPlayer(String name, int age)
+       : this.age = age,
+         this.name = name,
+         this.team = 'red',
+         this.xp = 0;
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+
+void main(){
+  // 블루팀 (named형식)
+  var player = Player.createBluePlayer(
+    name : 'nico',
+    age : 21,
+  );
+  // 레드팀 (positional형식)
+    var player = Player.createRedPlayer(
+    'nico',
+    21,
+  );
+}
+
+
+
+
+
 
 
 
