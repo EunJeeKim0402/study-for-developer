@@ -387,12 +387,166 @@ void main(){
 }
 
 
+// Recap
+// API로부터 여러 Player가 들어있는 목록을 받는다고 가정
+class Player{
+  final String name;
+  int xp;
+  String team;
+  
+  Player.fromJson(Map<String, dynamic> playerJson)
+      : name = playerJson['name'],
+        xp = playerJson['xp'],
+        team = playerJson['team'];
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+
+void main(){
+  var apiData = [
+    {
+      'name' : 'nico',
+      'team' : 'red',
+      'xp' : 0,
+    },
+        {
+      'name' : 'lynn',
+      'team' : 'red',
+      'xp' : 0,
+    },
+        {
+      'name' : 'dal',
+      'team' : 'red',
+      'xp' : 0,
+    },
+  ];
+  
+  apiData.forEach((playerJson){
+    var player = Player.fromJson(playerJson);
+    player.sayHello();
+  });
+}
 
 
+// Cascade Notation
+class Player{
+  String name;
+  int xp;
+  String team;
+  
+  Player({
+    required this.name, 
+    required this.xp, 
+    required this.team
+    });
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+
+void main(){
+  var nico = Player(name : 'nico', xp : 1200, team : 'red');
+   var potato = nico
+  /* 이렇게 하는 대신 중복 코드를 제거할 수 있음
+  nico.name = 'las';
+  nico.xp = 120000;
+  nico.team = 'blue';
+  */
+  ..name = 'las'
+  ..xp = 120000
+  ..team = 'blue'
+  ..sayHello();
+}
 
 
+// Emnums : 개발자들이 오타 등 실수하지 않게끔 도와주는 기능
+enum Team { red, blue }
+enum XPLevel { beginner, medium, pro }
+  
+class Player{
+  String name;
+  XPLevel xp;
+  Team team;
+  
+  Player({
+    required this.name, 
+    required this.xp, 
+    required this.team
+    });
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+
+void main(){
+  var nico = Player(name : 'nico', xp : XPLevel.pro, team : Team.red );
+  var potato = nico
+    ..name = 'las'
+    ..xp = XPLevel.medium
+    ..team = Team.blue
+    ..sayHello();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Abstract Classes (추상화 클래스). 추상화클래스로는 객체를 생성할 수 없음.
+// 추상화클래스는 다른 클래스들이 직접 구현해야하는 메소드들을 모아놓은 일종의 청사진
+// 추상화클래스는 이를 상속받는 모든 클래스가 가지고있어야하는 메소드를 정의함
+abstract class Human{
+  void walk();
+}
+
+enum Team { red, blue }
+enum XPLevel { beginner, medium, pro }
+  
+class Player extends Human{
+  String name;
+  XPLevel xp;
+  Team team;
+  
+  Player({
+    required this.name, 
+    required this.xp, 
+    required this.team
+    });
+  
+  void walk(){
+    print('im walking');
+  }
+  
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+
+class Coach extends Human{
+  void walk(){
+    print('the coach is walking');
+  }
+}
+
+void main(){
+  var nico = Player(name : 'nico', xp : XPLevel.pro, team : Team.red );
+  var potato = nico
+    ..name = 'las'
+    ..xp = XPLevel.medium
+    ..team = Team.blue
+    ..sayHello();
+}
 
 
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
