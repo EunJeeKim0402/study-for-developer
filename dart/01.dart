@@ -539,7 +539,83 @@ void main(){
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Inheritance
+class Human{
+  final String name;
+  //Human(this.name);
+  Human({required this.name});
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+enum Team { blue, red }
+
+class Player extends Human{
+  final Team team;
+  
+  Player({
+    required this.team, 
+    required String name
+  }) : super(name : name); // super라는 키워드를 통해서 Human과 상호작용 가능\\
+  
+  @override
+  void sayHello(){
+    super.sayHello();
+    print('and I play for ${team}');
+  }
+}
+
+void main(){
+  var player = Player(team : Team.red, name : 'nico');
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Mixins : 생성자가 없는 클래스
+// 여러 클래스에서 재사용이 가능 
+class Human{
+  final String name;
+  Human(this.name);
+  void sayHello(){
+    print('Hi my name is $name');
+  }
+}
+class Strong{
+  final double strenghtLevel = 1500.99;  
+}
+class QuickRunner{
+  void runQuick(){
+    print('ruuuuun');
+  }
+}
+class Tall{
+  final double height = 1.99;
+}
+
+enum Team { blue, red }
+
+class Player with Strong, QuickRunner, Tall{
+  final Team team;
+  
+  Player({
+    required this.team, 
+    required String name
+  }) : super(name); 
+  class Horse with Strong, QuickRunner{}
+  class Kid with QuickRunner{}
+  
+  @override
+  void sayHello(){
+    super.sayHello();
+    print('and I play for ${team}');
+  }
+}
+
+void main(){
+  var player = Player(team : Team.red, name : 'nico');
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
