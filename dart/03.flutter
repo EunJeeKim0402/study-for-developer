@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+class Player{
+  String? name; //= 'nico';
+  // ? 는 Player가 name을 가질수도 아닐수도 있다는 뜻
+
+  Player();
+  //Player({required this.name});
+}
+
+void main() {
+  var nico = Player(); // new가 없이도 가능 //name: 'potato'
+  //nico.name;
+  runApp(App());
+}
+
+// 모든 화면과 버튼 등이 App Widget으로부터 올 것임
+// StatelessWidget은 그냥 화면단에 띄워주는 역할만 함
+class App extends StatelessWidget{
+
+  // build를 작성하고 엔터 누르면 자동완성됨
+  @override
+  Widget build(BuildContext context) {
+    // 구글의 material앱처럼 보이게 하거나 ios앱 느낌으로 Cupertino사용도 가능
+    // 커스터마이즈된 UI를 원한다해도 일단 테마를 선택해줘야함.
+    return MaterialApp(
+      // 그냥 Text()를 사용하면 못생긴 글자가 나와서 Scaffold를 사용해야 함
+      // 화면은 scaffold를 가져야한다는 규칙이 있음(flutter의 규칙)
+      // 모바일 앱의 모든 화면은 스카폴드가 필요함. 네비게이션 바 등을 구성해줌
+      // 스카폴드에는 appBar라는 것도 있음
+       home : Scaffold(
+         appBar : AppBar(
+           centerTitle: true,
+           elevation: 10, // 그림자짐
+           title : Text('Hello flutter'),
+         ),
+         body : Center(
+           child : Text('Hello world'),
+         ),
+       ),
+    );
+  }
+
+}
