@@ -1,0 +1,104 @@
+import 'dart:io';
+
+import 'package:test/test.dart';
+
+void main() {
+  int plus() {
+    print('첫 번째 숫자 입력:');
+    var a = stdin.readLineSync()?.trim();
+    if (a == null || a.isEmpty) {
+      print('잘못입력함');
+    } else if (a is double) {
+      print('정수를 입력하세요.');
+      return plus();
+    }
+    print('두 번째 숫자 입력:');
+    var b = stdin.readLineSync()?.trim();
+    if (b == null || b.isEmpty) {
+      print('잘못입력함');
+    }
+    return int.parse(a!) + int.parse(b!); // '+' 연산자는 String형태
+    // readLineSync() 메소드가 자동으로 String타입으로 인식
+  }
+
+  int minus() {
+    print('첫 번째 숫자 입력:');
+    var a = stdin.readLineSync()?.trim();
+    if (a == null || a.isEmpty) {
+      print('잘못입력함');
+    }
+    print('두 번째 숫자 입력:');
+    var b = stdin.readLineSync()?.trim();
+    if (b == null || b.isEmpty) {
+      print('잘못입력함');
+    }
+    return int.parse(a!) - int.parse(b!);
+  }
+
+  int multip() {
+    print('첫 번째 숫자 입력:');
+    var a = stdin.readLineSync()?.trim();
+    if (a == null || a.isEmpty) {
+      print('잘못입력함');
+    }
+    print('두 번째 숫자 입력:');
+    var b = stdin.readLineSync()?.trim();
+    if (b == null || b.isEmpty) {
+      print('잘못입력함');
+    }
+    return int.parse(a!) * int.parse(b!);
+  }
+
+  int division() {
+    print('첫 번째 숫자 입력:');
+    var a = stdin.readLineSync()?.trim();
+    if (a == null || a.isEmpty) {
+      print('잘못입력함');
+    }
+    print('두 번째 숫자 입력:');
+    var b = stdin.readLineSync()?.trim();
+    if (b == null || b.isEmpty) {
+      print('잘못입력함');
+    }
+    return int.parse(a!) ~/ int.parse(b!);
+  }
+
+  while (true) {
+    print('◇ 은지의 귀여운 계산기◇');
+    print('계산할 방식을 알려주세요.');
+    print('1.더하기\n2.빼기\n3.곱하기\n4.나누기');
+    var select = stdin.readLineSync()?.trim();
+
+    switch (select) {
+      case '1':
+        var result = plus();
+        if (result != null) {
+          print('결과: $result\n\n');
+        }
+        break;
+      case '2':
+        var result = minus();
+        if (result != null) {
+          print('결과: $result\n\n');
+        }
+        break;
+      case '3':
+        var result = multip();
+        if (result != null) {
+          print('결과: $result\n\n');
+        }
+        break;
+      case '4':
+        var result = division();
+        if (result != null) {
+          print('결과: $result\n\n');
+        }
+        break;
+      default:
+        print('1부터 4중에서 골라주세요.\n\n');
+    }
+  }
+}
+
+// dart test/study3_test.dart
+// 컨트롤 씨
