@@ -1,0 +1,87 @@
+import 'dart:io';
+import 'package:test/test.dart';
+
+class Insert {
+  late double a, b;
+
+  void calcul() {
+    print('첫 번째 숫자 입력:');
+    var input1 = stdin.readLineSync()?.trim();
+    if (input1 == null || input1.isEmpty) {
+      print('잘못입력함');
+    }
+    a = double.parse(input1!); // !는 해당 변수가 null이 아님을 보장한다는 뜻
+    // readLineSync() 메소드가 자동으로 String타입으로 인식
+
+    print('두 번째 숫자 입력:');
+    var input2 = stdin.readLineSync()?.trim();
+    if (input2 == null || input2.isEmpty) {
+      print('잘못입력함');
+    }
+    b = double.parse(input2!);
+  }
+}
+
+void main() {
+  int plus() {
+    var insert = Insert();
+    insert.calcul();
+
+    return insert.a.toInt() + insert.b.toInt();
+    //return int.parse(a!) + int.parse(b!); // '+' 연산자는 String형태
+  }
+
+  int minus() {
+    var insert = Insert();
+    insert.calcul();
+
+    return insert.a.toInt() - insert.b.toInt();
+  }
+
+  int multip() {
+    var insert = Insert();
+    insert.calcul();
+
+    return insert.a.toInt() * insert.b.toInt();
+  }
+
+  double division() {
+    var insert = Insert();
+    insert.calcul();
+
+    return insert.a / insert.b;
+  }
+
+  // Map은 키랑 값이 세트. {}로 생성
+  Map map1 = {};
+  map1 = {
+    '1': plus,
+    '2': minus,
+    '3': multip,
+    '4': division,
+  };
+
+  while (true) {
+    print('◇ 은지의 귀여운 계산기2◇');
+    print('계산할 방식을 알려주세요.');
+    print('1.더하기\n2.빼기\n3.곱하기\n4.나누기');
+    var select = stdin.readLineSync()?.trim();
+
+    var result = map1[select];
+    // 그냥 result를 호출하면 Closure: () => int라고 뜸... 실제 함수 호출 결과를 출력해야됨
+
+    if (result != null) {
+      var result2 = result(); // result는 함수 객체라서 그냥 result만 출력하면 안되고 뒤에 ()붙여야됨
+      print('결과: $result2\n\n');
+    } else {
+      print('1부터 4중에서 골라주세요.\n\n');
+    }
+  }
+}
+
+// dart test/study3_test.dart
+// 컨트롤 씨
+/*
+한 줄 주석: Ctrl + / 또는 Command + / (Mac)
+여러 줄 주석: Shift + Alt + A 또는 Shift + Option + A (Mac)
+ */
