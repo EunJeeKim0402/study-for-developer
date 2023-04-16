@@ -1,0 +1,107 @@
+import 'dart:io';
+import 'package:test/test.dart';
+
+class Number {
+  // dart에서는 변수와 메소드를 private로 지정 가능.
+  late double _a, _b; // private로 지정. _를 붙이자마자 다른 메소드에서 빨간줄이 뜸.
+
+  void calcul(double a, double b) {
+    _a = a;
+    _b = b;
+  }
+
+  int _plus(double a, double b) {
+    var insert = Number(); // private _a, _b에 간접적으로 접근중
+    insert.calcul(a, b);
+
+    return insert._a.toInt() + insert._b.toInt();
+  }
+
+  int _minus(double a, double b) {
+    var insert = Number();
+    insert.calcul(a, b);
+
+    return insert._a.toInt() - insert._b.toInt();
+  }
+
+  int _multip(double a, double b) {
+    var insert = Number();
+    insert.calcul(a, b);
+
+    return insert._a.toInt() * insert._b.toInt();
+  }
+
+  double _division(double a, double b) {
+    var insert = Number();
+    insert.calcul(a, b);
+
+    return insert._a / insert._b;
+  }
+}
+
+void main() {
+  while (true) {
+    print('◇ 은지의 귀여운 계산기2◇');
+    print('계산할 방식을 알려주세요.');
+    print('1. 더하기\n2. 빼기\n3. 곱하기\n4. 나누기');
+    var select = stdin.readLineSync()?.trim();
+
+    if (select == null || select.isEmpty) {
+      print('잘못 입력함\n');
+      continue;
+    }
+
+    var a, b;
+
+    try {
+      print('첫 번째 숫자 입력:');
+      var input1 = stdin.readLineSync()?.trim();
+      if (input1 == null || input1.isEmpty) {
+        print('잘못 입력함\n');
+        continue;
+      }
+      a = double.parse(input1);
+    } catch (e) {
+      print('숫자를 입력해주세요.\n');
+      continue;
+    }
+
+    try {
+      print('두 번째 숫자 입력:');
+      var input2 = stdin.readLineSync()?.trim();
+      if (input2 == null || input2.isEmpty) {
+        print('잘못 입력함\n');
+        continue;
+      }
+      b = double.parse(input2);
+    } catch (e) {
+      print('숫자를 입력해주세요.\n');
+      continue;
+    }
+
+    var number = Number();
+    number.calcul(a, b);
+
+    Map<String, Function()> map1 = {
+      '1': () => number._plus(a, b),
+      '2': () => number._minus(a, b),
+      '3': () => number._multip(a, b),
+      '4': () => number._division(a, b),
+    };
+
+    var result = map1[select];
+    if (result != null) {
+      var result2 = result();
+      print('결과: $result2\n\n');
+    } else {
+      print('1부터 4중에서 골라주세요.\n\n');
+    }
+  }
+}
+
+// dart test/study3_test.dart
+// 컨트롤 씨
+/*
+한 줄 주석: Ctrl + / 또는 Command + / (Mac)
+여러 줄 주석: Shift + Alt + A 또는 Shift + Option + A (Mac)
+ */
