@@ -1,0 +1,63 @@
+import 'dart:io';
+
+class Calculator {
+  int plus(int a, int b) => a + b;
+  int minus(int a, int b) => a - b;
+  int multip(int a, int b) => a * b;
+  double division(double a, double b) => a / b;
+
+  void go() {
+    while (true) {
+      print('◇ 은지의 귀여운 계산기2◇');
+      print('계산할 방식을 알려주세요.');
+      print('1. 더하기\n2. 빼기\n3. 곱하기\n4. 나누기\n5. 프로그램 종료');
+      var select = stdin.readLineSync()?.trim();
+
+      if (select == null || select.isEmpty) {
+        print('잘못 입력함\n');
+        continue;
+      }
+
+      var a, b;
+      if (select == '5') {
+        print('프로그램을 종료합니다.');
+        break;
+      }
+      print('첫번째 숫자를 입력하세요 : ');
+      a = double.tryParse(stdin.readLineSync() ?? '') ?? 0;
+      print('두번째 숫자를 입력하세요 : ');
+      b = double.tryParse(stdin.readLineSync() ?? '') ?? 0;
+
+      int? result = null;
+      switch (select) {
+        case '1':
+          result = plus(a.toInt(), b.toInt());
+          break;
+        case '2':
+          result = minus(a.toInt(), b.toInt());
+          break;
+        case '3':
+          result = multip(a.toInt(), b.toInt());
+          break;
+        case '4':
+          result = division(a, b).toInt();
+          break;
+        default:
+          print('1부터 4중에서 골라주세요.\n\n');
+          continue;
+      }
+      print('결과: $result\n\n');
+    }
+  }
+}
+
+void main() {
+  Calculator calc = Calculator();
+  calc.go();
+}
+// dart test/study3_test.dart
+// 컨트롤 씨
+/*
+한 줄 주석: Ctrl + / 또는 Command + / (Mac)
+여러 줄 주석: Shift + Alt + A 또는 Shift + Option + A (Mac)
+ */
