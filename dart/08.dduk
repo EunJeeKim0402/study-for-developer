@@ -1,0 +1,117 @@
+import 'dart:io';
+
+class Human {
+  late String name;
+  late int money;
+  late String dduk;
+  late String hungry;
+
+  Human(String name, int money, String dduk, String hungry) {
+    this.name = name;
+    this.money = money;
+    this.dduk = dduk;
+    this.hungry = hungry;
+  }
+
+  void viewStatus() {
+    print("이름 : $name, 돈 : $money원, 소지품 : $dduk, 허기 : $hungry");
+  }
+
+  void give(int money, Human receiver) {
+    if (money <= 0) {
+      print('올바른 숫자를 입력해주세요.');
+      return;
+    }
+    if (money > this.money) {
+      print('돈이 부족해요.');
+      return;
+    }
+
+    this.money -= money;
+    receiver.money += money;
+
+    print('\n$name님이 ${receiver.name}님에게 $money원을 전달했습니다.');
+  }
+
+  void buyDDuk(int money) {
+    print('\n$name님은 떡볶이를 구입했어요.');
+    if (money <= 0) {
+      print('\n올바른 숫자를 입력해주세요.');
+      return;
+    }
+    if (money > this.money) {
+      print('\n돈이 부족해요.');
+      return;
+    }
+
+    this.money -= money;
+    this.dduk = '떡볶이';
+  }
+
+  void share(List<Human> humans) {
+    if (hungry == '배부름') {
+      print('\n배불러서 더는 못먹어요.');
+      return;
+    }
+
+    var food = false;
+
+    for (var human in humans) {
+      if (human.dduk != '없음') {
+        food = true;
+      }
+    }
+
+    if (food) {
+      print('\n$name님이 다같이 음식을 나누어먹었어요!');
+      for (var human in humans) {
+        if (human.hungry == '배고픔') {
+          human.hungry = '배부름';
+        }
+        human.dduk = '없음';
+      }
+    } else {
+      print('\n먹을 음식이 없습니다.');
+    }
+  }
+}
+
+void main() {
+  var human1 = Human("철수", 5000, "없음", "배고픔");
+  var human2 = Human("영희", 10000, "없음", "배고픔");
+
+  human1.viewStatus();
+  human2.viewStatus();
+
+  human2.give(3000, human1);
+
+  human1.viewStatus();
+  human2.viewStatus();
+
+  human1.buyDDuk(500);
+
+  human1.viewStatus();
+  human2.viewStatus();
+
+  var humans = [human1, human2];
+  human1.share(humans);
+
+  human1.viewStatus();
+  human2.viewStatus();
+
+  human2.buyDDuk(500);
+
+  human1.viewStatus();
+  human2.viewStatus();
+
+  human2.share(humans);
+
+  human1.viewStatus();
+  human2.viewStatus();
+}
+// dart test/study3_test.dart
+// 컨트롤 씨
+/*
+한 줄 주석: Ctrl + / 또는 Command + / (Mac)
+여러 줄 주석: Shift + Alt + A 또는 Shift + Option + A (Mac)
+ */
