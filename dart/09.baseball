@@ -1,0 +1,107 @@
+import 'dart:io';
+import 'dart:math';
+
+class Game {
+  Random random = Random();
+  List<int> answerNumbers = [];
+
+  go() {
+    while (answerNumbers.length < 3) {
+      int number = random.nextInt(9) + 1; // 1~9에서만 나오도록
+      // 중복제거
+      if (!answerNumbers.contains(number)) {
+        answerNumbers.add(number);
+      }
+    }
+
+    print('◆ 숫자야구게임◆');
+
+    while (true) {
+      print('중복되지 않는 숫자를 3개 선택해주세요.(예시 : 1,2,3)');
+      print('end : 종료 , answer : 정답확인');
+      var select = stdin.readLineSync()?.trim();
+      //입력값 없을때
+      if (select == null) {
+        print('숫자를 입력해주세요.');
+        continue;
+      }
+      //입력값 빈문자열
+      if (select.isEmpty) {
+        print('빈 문자열입니다.');
+        continue;
+      }
+      //정답확인
+      if (select == 'answer') {
+        print('정답 : ${answerNumbers.join(', ')}');
+        continue;
+      }
+      //게임종료
+      if (select == 'end') {
+        print('게임을 종료합니다.');
+        return;
+      }
+
+      List<String> selectList = select.split(',');
+      // ','로 받아서 쪼개기
+      if (selectList.length != 3) {
+        print('3개의 숫자를 입력해주세요.\n');
+        continue;
+      }
+
+      List<int> insertNumber = [];
+      bool isNumber = true; // true가 될때까지 반복요청
+      for (String number2 in selectList) {
+        int? parseNumber = int.tryParse(number2);
+        // int.tryParse로 문자열을 정수로 변환
+        if (parseNumber == null) {
+          isNumber = false;
+          break;
+        }
+        if (parseNumber > 10 || parseNumber < 1) {
+          print('1~9 사이의 숫자만 입력해주세요.\n');
+          isNumber = false;
+          break;
+        }
+        insertNumber.add(parseNumber); // insertNumber와 answerNumber비교
+      }
+      // isNumber가 false일때
+      if (!isNumber) {
+        continue;
+      }
+
+      int success = 0;
+      int fail = 0;
+      for (int i = 0; i < 3; i++) {
+        if (insertNumber[i] == answerNumbers[i]) {
+          success++;
+        } else {
+          for (int j = 0; j < 3; j++) {
+            if (insertNumber[i] == answerNumbers[j]) {
+              fail++;
+              break;
+            }
+          }
+        }
+      }
+
+      print('맞은 갯수 : $success, 위치만 틀린 갯수 : $fail\n');
+
+      if (success == 3) {
+        print('정답~~!!! 축하합니다**^^**');
+        break;
+      }
+    }
+  }
+}
+
+void main() {
+  Game game = Game();
+  game.go();
+}
+
+// dart test/study3_test.dart
+// 컨트롤 씨
+/*
+한 줄 주석: Ctrl + / 또는 Command + / (Mac)
+여러 줄 주석: Shift + Alt + A 또는 Shift + Option + A (Mac)
+ */
