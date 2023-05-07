@@ -28,7 +28,7 @@ class Calculator {
       print('두번째 숫자를 입력하세요 : ');
       b = double.tryParse(stdin.readLineSync() ?? '') ?? 0;
 
-      int? result = null;
+      num result = 0;
       switch (select) {
         case '1':
           result = plus(a.toInt(), b.toInt());
@@ -40,7 +40,7 @@ class Calculator {
           result = multip(a.toInt(), b.toInt());
           break;
         case '4':
-          result = division(a, b).toInt();
+          result = division(a, b);
           break;
         default:
           print('1부터 4중에서 골라주세요.\n\n');
@@ -51,13 +51,12 @@ class Calculator {
   }
 }
 
+/*
+메인 쪽
+import 'Calculator.dart';
+
 void main() {
   Calculator calc = Calculator();
   calc.go();
 }
-// dart test/study3_test.dart
-// 컨트롤 씨
-/*
-한 줄 주석: Ctrl + / 또는 Command + / (Mac)
-여러 줄 주석: Shift + Alt + A 또는 Shift + Option + A (Mac)
- */
+*/
