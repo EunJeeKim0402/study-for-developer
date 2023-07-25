@@ -1,0 +1,255 @@
+<!--!누르고 탭키 누르면 자동으로 DOCTYPE문서가 생성됨-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰 기초 익히기</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{ name }} <br>
+        <button @click="changeText">Click</button>
+        <hr> -->
+        <eunjee-button></eunjee-button>
+    </div> 
+    <hr><hr>
+    <div id="app-1">
+        <!-- {{ name }} <br>
+        <button @click="changeText">Click</button>
+        <hr> -->
+        <eunjee-button></eunjee-button>
+    </div>
+    <script>
+        Vue.component('hello-world', {
+            template: '<div>hello world</div>'
+        });
+        // Vue.component('eunjee-button', {
+        //     template: `
+        //     <div>
+        //         {{ name }} <br>
+        //         <hello-world>
+        //         </hello-world>
+        //         <button @click="changeText">Click</button>
+        //     </div>
+        //     `, // html태그가 들어감. 백틱 사용
+        //     // 하나의 태그로 감싸고 그 안에 컨텐츠가 들어가야 됨. 안그러면 에러남
+        //     data() { // 함수로 바꿔줘야됨
+        //         return {
+        //             name: 'gyulggum'
+        //         }
+        //     },
+        //     methods: { 
+        //         changeText() {
+        //             this.name = 'ggum updated';
+        //         }
+        //     },  
+        // });
+        const HelloWorld = {
+            template: '<div>hello world</div>'
+        };
+        const EunjeeButton = {
+            components: {
+                'hello world': HelloWorld
+            },
+            template: `
+            <div>
+                {{ name }} <br>
+                <hello-world>
+                </hello-world>
+                <button @click="changeText">Click</button>
+            </div>
+            `, // html태그가 들어감. 백틱 사용
+            // 하나의 태그로 감싸고 그 안에 컨텐츠가 들어가야 됨. 안그러면 에러남
+            data() { // 함수로 바꿔줘야됨
+                return {
+                    name: 'gyulggum'
+                }
+            },
+            methods: { 
+                changeText() {
+                    this.name = 'ggum updated';
+                }
+            },  
+        };
+        const app = new Vue({
+            el: '#app',
+            components: {
+                'eunjee-button': EunjeeButton
+            }
+            // data: {
+            //     name: 'gyulggum'
+            // },
+            // methods: { 
+            //     changeText() {
+            //         this.name = 'ggum updated';
+            //     }
+            // },            
+        })
+        const app1 = new Vue({
+            el: '#app-1',
+            components: {
+                'eunjee-button': EunjeeButton
+            }
+        //     data: {
+        //         name: 'gyulggum1'
+        //     },
+        //     methods: { 
+        //         changeText() {
+        //             this.name = 'ggum1 updated';
+        //         }
+        //     },            
+        })
+    </script>
+</body>
+</html>
+
+<!--
+<div id="app"> 
+    /* 기능 작성 */ 
+    {{ person.name }} {{ nextYear('안녕하세요') }} 
+    <input :type="type" v-bind:value="inputData"> 
+    <a :href="getKossieCoderLink('kossiecoder')">코딩 채널</a> ''로하면 그냥 유튜브
+    <button v-on:click="plus">더하기</button> 
+    <form v-on:submit.prevent="submit"> prevent를 붙이면 한번 제출하고 더이상 리로드X
+    <input type="text" :value="text" @keyup="updateText"><br> v-on:은 @로 대체 가능
+    <input type="text" v-model="text"><br> 양방향 데이터 바인딩
+    {{ text }}<br> 
+    <button type="submit">Submit</button> 
+    </form>  
+    ///////////// computed ///////////////
+    {{ reversedMessage }} methods에서 함수로 쓸경우 ()까지 붙이고
+    {{ reversedMessage }} computed속성으로 사용할 경우 ()없이
+    {{ reversedMessage }} computed를 사용하면 처음에 한번만 계산되고 그 값을 사용.
+    ///////////// watch ///////////////
+    {{ message }}<br>
+    <button @click="changeMessage">Click</button><br>
+    {{ updated }}
+    ///////////// 클래스바인딩, 스타일바인딩 ///////////////
+    <div :class="{ red: isRed, 'font-bold': isBold }">Hello</div> 클래스 바인딩
+    <div :style="{ color: red, fontSize: size }">Hello</div> 스타일바인딩
+    <button @click="update">Click</button>  
+    ///////////// v-if 와 v-show ///////////////
+    <template v-if="number === 1"> 태그를 한번에 묶어주기
+        <div>1</div>        
+        <div>2</div>        
+        <div>3</div>  
+    </template>      
+    <div v-else-if="number === 2">Hi</div>                
+    <div v-else>No</div>  
+    -v-if는 false일때 아예 렌더링을 하지 않음. 런타임시 조건이 바뀌지 않으면 v-if권장
+    v-show는 렌더링을 하지만 스타일에서 보이는지 여부를 선택 가능. 자주바뀌면 v-show사용
+    <div v-show="show">Yes</div>
+    <br>
+    <button @click="toggle">Toggle</button>    
+    ///////////// v-for ///////////////
+    <div>
+        {{ people[0].name }} {{ people[0].age }}
+    </div>
+    <div>
+        {{ people[1].name }} {{ people[1].age }}
+    </div>
+    <div>
+        {{ people[2].name }} {{ people[2].age }}
+    </div>     
+    <div>
+        {{ people[3].name }} {{ people[3].age }}
+    </div>       
+    <hr>
+    <div v-for="(person, index) in people" :key="index">
+        {{ person.name }} {{ person.age }} {{ index }}
+    </div> 위의 중복코드를 한줄로 정리 가능
+</div> 
+<script> 
+    new Vue({ 
+        el: '#app', 
+        data: { 
+            /*person: { 
+                name: '코지 코더', 
+                age: 34 
+            }, 
+            inputData: 'hello!!!', 
+            type: 'number', 
+            link: 'https://www.youtube.com/'*/ 
+            year: 2023, 
+            text: 'text' ,
+            message: '헬로우',
+            updated: '아니오',
+            //isRed: false,
+            //isBold: false
+            red: 'red',
+            size: '30px'
+            number: 1,
+            show: false
+        }, 
+        methods: { // 함수 작성 가능 
+            /*getKossieCoderLink(channel) { 
+                return this.link + channel; 
+            }, 
+            nextYear(greeting) { // function까지 안써도 동일하게 작성 가능 
+                // data의 정보가 바로 this에 들어가서 굳이 data를 쓸 필요X 
+                return greeting + '! ' + this.person.name + '는 내년에 ' + (this.person.age + 1) + '살 입니다'; 
+            }, 
+            otherMethod: function() { 
+                this.nextYear(); 
+            }*/ 
+            plus() { 
+                this.year++; 
+            }, 
+            minus() { 
+                this.year--; 
+            }, 
+            submit() { 
+                alert('submitted'); 
+                console.log('hi'); 
+            }, 
+            /*updateText(event) { 
+
+                this.text = event.target.value; 
+            }*/
+            changeMessage() {
+                this.message = '코지코더';
+            },
+            update() {
+                this.isRed = !this.isRed;
+                this.isBold = !this.isBold;
+            },
+            increaseNumber() {
+                this.number++;
+            },
+            toggle() {
+                this.show = !this.show;
+            },
+            people: [
+                { id: 1, name: 'a', age: 20 }, 
+                { id: 2, name: 'b', age: 21 }, 
+                { id: 3, name: 'c', age: 22 }, 
+                { id: 4, name: 'd', age: 23 }, 
+                { id: 5, name: 'e', age: 24 }, 
+                { id: 6, name: 'e', age: 25 },
+            ]
+        },
+        computed: { // {{ ... }} 에 적혀있던 코드를 이쪽에 작성 가능
+            reversedMessage() {
+                // 분해.역순.다시조합
+                return this.message.split('').reverse().join('')                    
+            }
+        },
+        watch: { // 되도록 더 짧은 코드를 쓸수있는 computed를 권장
+            message(newVal, oldVal) { // newVal새로운값, oldVal옛날값
+                console.log(newVal, oldVal);
+                this.updated = '네';
+            }
+        }
+    }) 
+</script> 
+-->
