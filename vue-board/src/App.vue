@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
     <Footer />
   </div>
 </template>
@@ -26,6 +28,11 @@ html,body{padding:0; margin:0;}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin:0; padding:0;
 }
+h1{color:#43b984;}
+table{width:100%; border-collapse:collapse;}
+.wrap{width:100%;}
+.container{width:800px; margin:0 auto;}
+a{text-decoration:none;}
+.btn{padding:10px; background:#34445c; color:#fff;}
 </style>
