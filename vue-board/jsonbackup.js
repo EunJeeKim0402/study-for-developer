@@ -84,5 +84,5 @@
 
 
 "start": "node mysqlConnection.js",
-
+"start": "npm run dev",
   */
