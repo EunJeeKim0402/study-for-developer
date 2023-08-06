@@ -1,5 +1,6 @@
-const db = require('../../../config/db'); // db설정 호출
-const conn = db.init(); // db연결
+const db = require('../../../../config/database').init();
+// const db = require('../../../../config/database'); // db설정 호출
+// const conn = db.init(); // db연결
 
 exports.list = (req, res) => { // 리스트 모듈 router에서 호출
     let ipp = 10;
