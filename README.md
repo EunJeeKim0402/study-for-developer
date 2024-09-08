@@ -1,2 +1,12 @@
-# study-for-developer
-coding test,code review, etc...
+# 공부
+
+# 도서
+* ...
+
+# 코딩테스트 & 알고리즘
+* 프로그래머스 코딩테스트
+* 백준 코딩테스트
+
+# 강의
+
+# etc
