@@ -1,4 +1,4 @@
-#:heavy_check_mark:공부
+:heavy_check_mark:공부
 
 <h2>도서</h2>
 * ...
